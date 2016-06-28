@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--design by erictang^_^-->
+
+    <title>RulerSwift</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/responsive-nav.css">
+    <script src="js/responsive-nav.js"></script>
+    <style>
+        body {
+            background-color: #193c6d;
+
+            background-size: 100%;
+
+
+            margin: 0px;
+            overflow-y: scroll;
+            overflow-x:hidden;
+            animation:myfirst ;
+            animation-iteration-count:infinite;
+            animation-duration: 15s;
+            -webkit-animation-direction:alternate;
+
+        }
+
+
+        @keyframes myfirst
+        {
+            0%   {background: #cf8a0d
+            }
+            25%  {background: #14a7a6
+            }
+            50%  {background: #255f97
+            }
+            75%  {background: #289716
+            }
+            100% {background: #882697}
+
+        }
+
+
+        .full{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            right: 0;
+            color: aliceblue;
+            font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+        }
+
+        .menu{
+
+            list-style: none;
+
+
+
+        }
+        li{
+            float: left;
+            margin: 10px;
+
+        }
+        li a{
+            color: aliceblue;
+            text-decoration:none;
+
+        }
+        #ss{
+            position: absolute;
+
+            right: 0px;
+
+        }
+        footer{
+            height: 50px;
+            border: solid red 3px;
+            text-align: center;
+            width: 100%;
+            margin-top: 200px;
+        }
+        .nav-toggle {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            width: 70px;
+            height: 55px;
+            float: right;
+            text-indent: -9999px;
+            overflow: hidden;
+            background: #f42f1d url("hamburger.gif") no-repeat 50% 33%;
+        }
+        .content{
+            border:solid gold 3px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<script src="js/wave.js"></script>
+<script>
+    var SEPARATION = 100,
+            AMOUNTX = 100,
+            AMOUNTY = 70;
+
+    var container;
+    var camera, scene, renderer;
+
+    var particles, particle, count = 0;
+
+    var mouseX = 85,
+            mouseY = -342;
+
+    var windowHalfX = window.innerWidth / 2;
+    var windowHalfY = window.innerHeight / 2;
+
+    init();
+    animate();
+
+    function init() {
+
+        container = document.createElement('div');
+        document.body.appendChild(container);
+
+        camera = new THREE.PerspectiveCamera(120, window.innerWidth / window.innerHeight, 1, 10000);
+        camera.position.z = 1000;
+
+        scene = new THREE.Scene();
+
+        particles = new Array();
+
+        var PI2 = Math.PI * 2;
+        var material = new THREE.ParticleCanvasMaterial({
+
+            color: 0xe1e1e1,
+            program: function(context) {
+
+                context.beginPath();
+                context.arc(0, 0, .6, 0, PI2, true);
+                context.fill();
+
+            }
+
+        });
+
+        var i = 0;
+
+        for (var ix = 0; ix < AMOUNTX; ix++) {
+
+            for (var iy = 0; iy < AMOUNTY; iy++) {
+
+                particle = particles[i++] = new THREE.Particle(material);
+                particle.position.x = ix * SEPARATION - ((AMOUNTX * SEPARATION) / 2);
+                particle.position.z = iy * SEPARATION - ((AMOUNTY * SEPARATION) / 2);
+                scene.add(particle);
+
+            }
+
+        }
+
+        renderer = new THREE.CanvasRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+
+        document.addEventListener('mousemove', onDocumentMouseMove, false);
+        document.addEventListener('touchstart', onDocumentTouchStart, false);
+        document.addEventListener('touchmove', onDocumentTouchMove, false);
+
+        //
+
+        window.addEventListener('resize', onWindowResize, false);
+
+    }
+
+    function onWindowResize() {
+
+        windowHalfX = window.innerWidth / 2;
+        windowHalfY = window.innerHeight / 2;
+
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+    }
+
+    //
+
+    function onDocumentMouseMove(event) {
+
+        mouseX = event.clientX - windowHalfX;
+        mouseY = event.clientY - windowHalfY;
+
+    }
+
+    function onDocumentTouchStart(event) {
+
+        if (event.touches.length === 1) {
+
+            event.preventDefault();
+
+            mouseX = event.touches[0].pageX - windowHalfX;
+            mouseY = event.touches[0].pageY - windowHalfY;
+
+        }
+
+    }
+
+    function onDocumentTouchMove(event) {
+
+        if (event.touches.length === 1) {
+
+            event.preventDefault();
+
+            mouseX = event.touches[0].pageX - windowHalfX;
+            mouseY = event.touches[0].pageY - windowHalfY;
+
+        }
+
+    }
+
+    //
+
+    function animate() {
+
+        requestAnimationFrame(animate);
+
+        render();
+
+
+    }
+
+    function render() {
+
+        camera.position.x += (mouseX - camera.position.x) * .05;
+        camera.position.y += (-mouseY - camera.position.y) * .05;
+        camera.lookAt(scene.position);
+
+        var i = 0;
+
+        for (var ix = 0; ix < AMOUNTX; ix++) {
+
+            for (var iy = 0; iy < AMOUNTY; iy++) {
+
+                particle = particles[i++];
+                particle.position.y = (Math.sin((ix + count) * 0.3) * 50) + (Math.sin((iy + count) * 0.5) * 50);
+                particle.scale.x = particle.scale.y = (Math.sin((ix + count) * 0.3) + 1) * 2 + (Math.sin((iy + count) * 0.5) + 1) * 2;
+
+            }
+
+        }
+
+        renderer.render(scene, camera);
+
+        count += 0.1;
+
+    }
+</script>
+<div class="full">
+    <script>
+        document.getElementById().style.back
+    </script>
+
+    <div class="nav-collapse">
+        <ul >
+            <li>
+                <a href="http://www.tangyc.top">首页</a>
+            <li >
+                <a href="http://www.tangyc.top/mathedu/guidepage.html">毕业设计展示</a>
+            <li >
+                <a href="#"class="button button-rounded button-highlight">RulerSwift软件</a>
+            <li >
+                <a href="#">学习心得</a>
+            <li>
+                <a href="">其它项目展示</a>
+            </li>
+            <li id="ss">
+                <a href="" class="button button-glow button-rounded button-highlight">login</a>
+            </li>
+
+
+        </ul>
+    </div>
+    <script>
+        var navigation = responsiveNav(".nav-collapse");
+    </script>
+
+
+
+    <div class="main"style="margin: 100px;text-align: center">
+        <img src="brand.png">
+        <h1>RulerSwift</h1>
+        <h3>简单易于使用的前端开发辅助工具</h3>
+        <a href="https://itunes.apple.com/cn/app/rulerswift/id1102341786?mt=12" class="button  button-highlight button-pill">下载</a>
+        <p style="font-size: 0.7em">＊Mac OS 10.8或更高，需要64位处理器</p>
+    </div>
+    <div class="content">
+    <div class="main-intro"style="text-align: left;width: 40%;padding-left: 10px;float: left">
+        <article>
+            <h2>我为什么需要使用他？</h2>
+            <p>RulerSwift是一款由几位大学生开发的一款好用的前端小工具，他们不仅仅只是开发了这款软件，在他们自己的开发过程中也常常使用其作为一个必要的工具，我们希望不仅能够使自己得到方便，而是让更多的开发新人受益，共同进步</p>
+        </article>
+    </div>
+
+    <div class="second-intro"style="text-align: right;width: 40%;float: right;padding-right: 10px">
+
+        <article>
+            <h1>他具体有什么功能？</h1>
+            <p>这款软件的使用场景主要是为前端开发和图片编辑人员而打造，具备点对点测距，量角器，直接度量等方法来求出网站边距，无需使用厚重的开发工具，轻量化，随时开启关闭，成为一种和编辑器和谐存在的小工具</p>
+        </article>
+    </div>
+        <footer>
+            <p style="color: gold;font-size: 0.9em">develop by Li Zhi©2016 | assist by EricTang</p>
+        </footer>
+
+    </div>
+
+
+
+</div>
+
+
+</body>
+
+</html>
+
