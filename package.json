@@ -1,0 +1,23 @@
+{
+  "name": "rulerswift",
+  "version": "1.0.0",
+  "description": "for rulerswift introduction",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/awesomeric/rulerswift_site.git"
+  },
+  "author": "ericTang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/awesomeric/rulerswift_site/issues"
+  },
+  "homepage": "https://github.com/awesomeric/rulerswift_site#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-uglify": "^2.0.0"
+  }
+}
