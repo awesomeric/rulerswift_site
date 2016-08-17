@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/buttons.css">
     <link rel="stylesheet" href="css/responsive-nav.css">
     <script src="js/responsive-nav.js"></script>
+
     <style>
         body {
             background-color: #193c6d;
@@ -18,8 +19,7 @@
 
 
             margin: 0px;
-            overflow-y: scroll;
-            overflow-x:hidden;
+
             animation:myfirst ;
             animation-iteration-count:infinite;
             animation-duration: 15s;
@@ -54,13 +54,7 @@
 
         }
 
-        .menu{
 
-            list-style: none;
-
-
-
-        }
         li{
             float: left;
             margin: 10px;
@@ -79,10 +73,9 @@
         }
         footer{
             height: 50px;
-            border: solid red 3px;
             text-align: center;
             width: 100%;
-            margin-top: 200px;
+            margin-top:10px;
         }
         .nav-toggle {
             -webkit-touch-callout: none;
@@ -95,17 +88,80 @@
             float: right;
             text-indent: -9999px;
             overflow: hidden;
-            background: #f42f1d url("hamburger.gif") no-repeat 50% 33%;
+            background: #e3eaf4 url("hamburger.gif") no-repeat 50% 33%;
         }
-        .content{
-            border:solid gold 3px;
-        }
+
 
     </style>
 </head>
 
 <body>
 
+
+<div class="full">
+
+
+    <div class="nav-collapse">
+        <ul >
+            <li>
+                <a href="http://www.tangyc.top">首页</a>
+            <li >
+                <a href="http://www.tangyc.top/mathedu/guidepage.html">毕业设计展示</a>
+            <li >
+                <a href="#"class="button button-rounded button-highlight">RulerSwift软件</a>
+            <li >
+                <a href="#">学习心得</a>
+            <li>
+                <a href="">其它项目展示</a>
+            </li>
+            <li id="ss">
+                <a href="" class="button button-glow button-rounded button-highlight">login</a>
+            </li>
+
+
+        </ul>
+    </div>
+    <script>
+        var navigation = responsiveNav(".nav-collapse");
+    </script>
+
+
+
+    <div class="main"style="margin: 100px;text-align: center">
+        <img src="brand.png">
+        <h1>RulerSwift</h1>
+        <h3>简单易于使用的前端开发辅助工具</h3>
+        <a href="https://itunes.apple.com/cn/app/rulerswift/id1102341786?mt=12" class="button  button-highlight button-pill">下载</a>
+        <p style="font-size: 0.7em">＊Mac OS 10.8或更高，需要64位处理器</p>
+    </div>
+    <div class="content">
+    <div class="main-intro"style="text-align: left;width: 40%;padding-left: 10px;float: left">
+        <article>
+            <h2>我为什么需要使用他？</h2>
+            <p>RulerSwift是一款由几位大学生开发的一款好用的前端小工具，他们不仅仅只是开发了这款软件，在他们自己的开发过程中也常常使用其作为一个必要的工具，我们希望不仅能够使自己得到方便，而是让更多的开发新人受益，共同进步</p>
+        </article>
+    </div>
+
+    <div class="second-intro"style="text-align: right;width: 40%;float: right;padding-right: 10px">
+
+        <article>
+            <h1>他具体有什么功能？</h1>
+            <p>这款软件的使用场景主要是为前端开发和图片编辑人员而打造，具备点对点测距，量角器，直接度量等方法来求出网站边距，无需使用厚重的开发工具，轻量化，随时开启关闭，成为一种和编辑器和谐存在的小工具</p>
+        </article>
+    </div>
+        <div style="clear: both"></div>
+
+    </div>
+    <footer>
+        <p style="color: gold;font-size: 0.9em">develop by Li Zhi©2016 | assist by EricTang</p>
+    </footer>
+
+
+
+</div>
+
+
+</body>
 <script src="js/wave.js"></script>
 <script>
     var SEPARATION = 100,
@@ -241,8 +297,8 @@
 
     function render() {
 
-        camera.position.x += (mouseX - camera.position.x) * .05;
-        camera.position.y += (-mouseY - camera.position.y) * .05;
+        camera.position.x += (500 - camera.position.x) * .05;
+        camera.position.y += (500 - camera.position.y) * .05;
         camera.lookAt(scene.position);
 
         var i = 0;
@@ -265,71 +321,6 @@
 
     }
 </script>
-<div class="full">
-    <script>
-        document.getElementById().style.back
-    </script>
-
-    <div class="nav-collapse">
-        <ul >
-            <li>
-                <a href="http://www.tangyc.top">首页</a>
-            <li >
-                <a href="http://www.tangyc.top/mathedu/guidepage.html">毕业设计展示</a>
-            <li >
-                <a href="#"class="button button-rounded button-highlight">RulerSwift软件</a>
-            <li >
-                <a href="#">学习心得</a>
-            <li>
-                <a href="">其它项目展示</a>
-            </li>
-            <li id="ss">
-                <a href="" class="button button-glow button-rounded button-highlight">login</a>
-            </li>
-
-
-        </ul>
-    </div>
-    <script>
-        var navigation = responsiveNav(".nav-collapse");
-    </script>
-
-
-
-    <div class="main"style="margin: 100px;text-align: center">
-        <img src="brand.png">
-        <h1>RulerSwift</h1>
-        <h3>简单易于使用的前端开发辅助工具</h3>
-        <a href="https://itunes.apple.com/cn/app/rulerswift/id1102341786?mt=12" class="button  button-highlight button-pill">下载</a>
-        <p style="font-size: 0.7em">＊Mac OS 10.8或更高，需要64位处理器</p>
-    </div>
-    <div class="content">
-    <div class="main-intro"style="text-align: left;width: 40%;padding-left: 10px;float: left">
-        <article>
-            <h2>我为什么需要使用他？</h2>
-            <p>RulerSwift是一款由几位大学生开发的一款好用的前端小工具，他们不仅仅只是开发了这款软件，在他们自己的开发过程中也常常使用其作为一个必要的工具，我们希望不仅能够使自己得到方便，而是让更多的开发新人受益，共同进步</p>
-        </article>
-    </div>
-
-    <div class="second-intro"style="text-align: right;width: 40%;float: right;padding-right: 10px">
-
-        <article>
-            <h1>他具体有什么功能？</h1>
-            <p>这款软件的使用场景主要是为前端开发和图片编辑人员而打造，具备点对点测距，量角器，直接度量等方法来求出网站边距，无需使用厚重的开发工具，轻量化，随时开启关闭，成为一种和编辑器和谐存在的小工具</p>
-        </article>
-    </div>
-        <footer>
-            <p style="color: gold;font-size: 0.9em">develop by Li Zhi©2016 | assist by EricTang</p>
-        </footer>
-
-    </div>
-
-
-
-</div>
-
-
-</body>
 
 </html>
 
